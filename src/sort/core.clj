@@ -24,14 +24,16 @@
           (swap-if mut-xs j (dec j) <)))
       (into [] mut-xs))))
 
-(defn merge-sorted [xs ys & sorted]
-  (let [sorted (or sorted (list)) _ (prn xs ys sorted)]
-    (cond
-      (empty? xs) (concat sorted ys)
-      (empty? ys) (concat sorted xs)
-      :else (let [x (first xs) y (first ys)]
-              (if (< x y)
-                (merge-sorted (drop 1 xs) ys (concat (list x) sorted))
-                (merge-sorted (drop 1 ys) xs (concat (list y) sorted))
-                )))))
+
+(defn merge-sorted [xs ys]
+  (let [merge-sorted-helper (fn merge-sorted-helper [xs ys sorted]
+                              (cond
+                                (empty? xs) (concat ys sorted)
+                                (empty? ys) (concat xs sorted)
+                                :else (let [x (first xs) y (first ys)]
+                                        (if (< x y)
+                                          (merge-sorted-helper (drop 1 xs) ys (conj sorted x))
+                                          (merge-sorted-helper (drop 1 ys) xs (conj sorted y))
+                                          ))))]
+    (reverse (merge-sorted-helper (lazy-seq xs) (lazy-seq ys) '()))))
 
