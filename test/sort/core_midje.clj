@@ -1,9 +1,8 @@
 (ns sort.core_midje
-  (:require [midje.sweet :refer :all]
+  (:require [midje.sweet :refer [fact]]
             [sort.core :as subject]))
 
 (fact "merges two sorted lists"
-      :has-metadata
       (subject/merge-sorted [] []) => []
       (subject/merge-sorted [1] []) => [1]
       (subject/merge-sorted [1 2] []) => [1 2]

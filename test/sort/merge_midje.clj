@@ -1,10 +1,9 @@
 (ns sort.merge_midje
   (:require [sort.merge :as subject]
-            [midje.sweet :refer :all]))
+            [midje.sweet :refer [fact]]))
 
 
 (fact "merges two sorted lists with less recursion bro"
-      :has-metadata
       (subject/merge-sorted-fast [] []) => []
       (subject/merge-sorted-fast [1] []) => [1]
       (subject/merge-sorted-fast [1 2] []) => [1 2]
