@@ -28,8 +28,8 @@
 (defn merge-sorted [xs ys]
   (let [merge-sorted-helper (fn merge-sorted-helper [xs ys sorted]
                               (cond
-                                (empty? xs) (concat ys sorted)
-                                (empty? ys) (concat xs sorted)
+                                (empty? xs) (concat (reverse ys) sorted)
+                                (empty? ys) (concat (reverse xs) sorted)
                                 :else (let [x (first xs) y (first ys)]
                                         (if (< x y)
                                           (merge-sorted-helper (drop 1 xs) ys (conj sorted x))
