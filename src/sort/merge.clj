@@ -8,8 +8,8 @@
         (empty? ys) (concat (reverse xs) sorted)
         :else (let [x (first xs) y (first ys)]
                 (if (< x y)
-                  (recur (drop 1 xs) ys (conj sorted x))
-                  (recur (drop 1 ys) xs (conj sorted y))))))))
+                  (recur (rest xs) ys (cons x sorted))
+                  (recur (rest ys) xs (cons y sorted))))))))
 
 (defn merge-sort [xs]
   (let [n (count xs)]
