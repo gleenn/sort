@@ -1,6 +1,6 @@
-(ns sort.core_midje
+(ns sort.merge_slow_midje
   (:require [midje.sweet :refer [fact]]
-            [sort.core :as subject]))
+            [sort.merge_slow :as subject]))
 
 (fact "merges two sorted lists"
       (subject/merge-sorted [] []) => []
