@@ -6,10 +6,10 @@
       (cond
         (empty? xs) (concat (reverse ys) sorted)
         (empty? ys) (concat (reverse xs) sorted)
-        :else (let [x (first xs) y (first ys)]
+        :else (let [[x & rest-x] xs [y & rest-y] ys]
                 (if (< x y)
-                  (recur (rest xs) ys (cons x sorted))
-                  (recur (rest ys) xs (cons y sorted))))))))
+                  (recur rest-x ys (cons x sorted))
+                  (recur xs rest-y (cons y sorted))))))))
 
 (defn merge-sort [xs]
   (let [n (count xs)]
