@@ -1,4 +1,5 @@
-(ns sort.bubble)
+(ns sort.bubble
+  (:require [clojure.string :as string]))
 
 (defn- swap-if- [mut-xs i j comparator]
   (let [mut-xs-i (get mut-xs i)

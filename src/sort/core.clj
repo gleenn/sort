@@ -16,4 +16,4 @@
               (merge-sorted- (drop 1 ys) xs (conj sorted y))))))
 
 (defn merge-sorted [xs ys]
-    (reverse (merge-sorted- (lazy-seq xs) (lazy-seq ys) '())))
+    (reverse (merge-sorted- xs ys '())))
